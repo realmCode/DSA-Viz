@@ -1,1 +1,31 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bubble Sort Simulator</title>
+  <link rel="stylesheet" href="BubbleSort.css"> <!-- Keep the same CSS file -->
+</head>
+<body>
+  <div class="container">
+    <h1>Bubble Sort</h1> <!-- Changed from Merge Sort to Bubble Sort -->
+    <div class="main-content">
+      <div class="guide-character">
+        <img src="man.png" alt="Guide" class="man-image">
+        <div class="speech-bubble" id="speech-bubble"></div>
+      </div>
+      <div class="simulation-area">
+        <div class="array-container">
+          <div class="array-boxes" id="array-boxes"></div>
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <input type="number" id="number-input" placeholder="Enter number">
+      <button id="add-number" class="add-number">Add Number</button>
+      <button id="run-algo" disabled>Run Bubble Sort</button> <!-- Changed from Run Merge Sort to Run Bubble Sort -->
+    </div>
+  </div>
+  <script src="BubbleSort.js"></script> <!-- Keep the same JS file, but ensure it contains the Bubble Sort logic -->
+</body>
+</html>

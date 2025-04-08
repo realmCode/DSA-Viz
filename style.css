@@ -1,1 +1,123 @@
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex, .flex-row {
+    display: flex;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.position-cover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+    align-self: center;
+}
+
+.align-left {
+    align-items: left;
+}
+
+.align-right {
+    align-items: right;
+}
+
+.width-auto {
+    width: auto;
+}
+
+.width-100{
+    width: 100%;
+}
+
+
+.margin-container {
+    margin: clamp(1rem, 3dvw, 1.5rem) clamp(1rem, 3dvw, 2rem);
+}
+
+.radius-5 {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+/* .gradient-border-mask {
+    display: flow-root;
+    position: relative;
+}
+   */
+.gradient-border-mask::before {
+    --angle: 0deg;
+    z-index: -10;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0.5rem;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--angle), #3acfd5 0%, #3a4ed5 100%) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    animation: 4s borderanim linear infinite;
+  }
+  
+  @keyframes borderanim {
+    to{
+        --angle:360deg;
+    }
+    
+}
+
+
+.text-gradient-purple {
+    background: var(--HEADER_GRAD, linear-gradient(90deg, #B171F1 0%, #F3090C 100%));
+    background-clip: text;
+    width: fit-content;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-golden {
+    background: var(--active-_grad_nav, linear-gradient(90deg, #FFF200 0%, #F70 100%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.verticle-center{
+    align-items: center;
+}
+
+.margin-1rm {
+    margin: 1rem;
+}
+.margin-08rm {
+    margin: 0.8rem;
+}

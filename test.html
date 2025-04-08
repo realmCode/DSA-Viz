@@ -1,0 +1,24 @@
+
+<style>
+  .hero-section {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideFadeIn 1s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+</style>
+
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Welcome to the Visualizer</h1>
+    <p>What would you like to learn today?</p>
+  </div>
+</section>

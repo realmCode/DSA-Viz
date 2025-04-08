@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DSA VIZ</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./main.css" />
+    <script src="./script.js" defer></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+</head>
+
+<body>
+    <header class="flex-row width-auto justify-between align-center margin-container">
+        <h1 class="logo-gradient logo">DSA VIZ</h1>
+        <nav class="flex-row gradient-border-mask" style="position: relative;  ">
+            <div class="hamburger flex-column align-center width-100" style="z-index: 12;">
+                <span class="ham_1"></span>
+                <span class="ham_2"></span>
+                <span class="ham_3"></span>
+            </div>
+            <div class="nav background-NAVBAR_GRAD flex-row radius-5" style="z-index: 10;">
+                <a href="./index.html" class="nav__btn width-100">HOME</a>
+                <a href="#" class="nav__btn active width-100">VISUALIZE</a>
+                <a href="./about.html" class="nav__btn width-100">ABOUT</a>
+            </div>
+            </div>
+    </header>
+
+    <!-- <div class="hero"> -->
+    <section class="hero-section flex-row width-auto justify-between align-center margin-container radius-5"
+        style="max-width: 85%;     justify-self: center;">
+        <div class="flex-column margin-container">
+            <div style="border-left: 5px solid #B171F1;">
+                <p class="heading__main text-gradient-purple" style="margin-left: 1rem;">
+                    VISUALIZE
+                </p>
+                <p class="heading__sub" style="margin-left: 1rem;">
+                    What would you like to learn today?
+                </p>
+            </div>
+            <div class="dropdown flex-column" style="margin-top: 1rem;">
+
+
+                <!-- array list  -->
+                <div>
+                    <a href="arraylist.html" class="dropdown__menu  radius-5 flex-row justify-between verticle-center">
+                        <p class="heading__sub margin-08rm">ARRAY LIST</p>
+                    </a>
+                </div>
+
+
+                <!-- linked list  -->
+                <div>
+                    <div class="dropdown__menu  radius-5 flex-row justify-between verticle-center">
+                        <p class="heading__sub margin-08rm">LINKED LIST</p>
+                        <svg class="drop-arrow margin-08rm" xmlns="http://www.w3.org/2000/svg" width="28" height="13"
+                            viewBox="0 0 28 13" fill="none">
+                            <path
+                                d="M13.8837 8.62871L14.1867 8.85951L14.4896 8.62871L23.897 1.46263C24.6637 0.878668 25.9431 0.878668 26.7098 1.46263C27.0767 1.74216 27.2219 2.07373 27.2219 2.36697C27.2219 2.66021 27.0767 2.99178 26.7098 3.27131L15.5809 11.7487C14.8143 12.3327 13.5348 12.3327 12.7682 11.7487L1.63931 3.27131C1.27235 2.99178 1.12714 2.66021 1.12714 2.36697C1.12714 2.07439 1.2717 1.74366 1.63683 1.46452C2.00974 1.18875 2.52433 1.03356 3.05964 1.03158C3.59609 1.0296 4.10722 1.18151 4.47626 1.46263L13.8837 8.62871Z"
+                                fill="#171717" stroke="black" />
+                        </svg>
+                    </div>
+                    <div class="dropdown__sub radius-5 flex-column">
+                        <a href="" class="description-dark width-auto margin-08rm">| Single Linked</a>
+                        <a href="" class="description-dark width-auto margin-08rm">| Double Linked</a>
+                        <a href="" class="description-dark width-auto margin-08rm">| Circular</a>
+                    </div>
+                </div>
+
+                <!-- stack  -->
+                <div>
+                    <div class="dropdown__menu  radius-5 flex-row justify-between verticle-center">
+                        <p class="heading__sub margin-08rm">STACK</p>
+                        <svg class="drop-arrow margin-08rm" xmlns="http://www.w3.org/2000/svg" width="28" height="13"
+                            viewBox="0 0 28 13" fill="none">
+                            <path
+                                d="M13.8837 8.62871L14.1867 8.85951L14.4896 8.62871L23.897 1.46263C24.6637 0.878668 25.9431 0.878668 26.7098 1.46263C27.0767 1.74216 27.2219 2.07373 27.2219 2.36697C27.2219 2.66021 27.0767 2.99178 26.7098 3.27131L15.5809 11.7487C14.8143 12.3327 13.5348 12.3327 12.7682 11.7487L1.63931 3.27131C1.27235 2.99178 1.12714 2.66021 1.12714 2.36697C1.12714 2.07439 1.2717 1.74366 1.63683 1.46452C2.00974 1.18875 2.52433 1.03356 3.05964 1.03158C3.59609 1.0296 4.10722 1.18151 4.47626 1.46263L13.8837 8.62871Z"
+                                fill="#171717" stroke="black" />
+                        </svg>
+                    </div>
+                    <div class="dropdown__sub radius-5 flex-column">
+                        <a href="" class="description-dark width-auto margin-08rm">| STACK (Array List)</a>
+                        <a href="" class="description-dark width-auto margin-08rm">| STACK (Linked List)</a>
+                    </div>
+                </div>
+                <!-- QUEuE  -->
+                <div>
+                    <div class="dropdown__menu  radius-5 flex-row justify-between verticle-center">
+                        <p class="heading__sub margin-08rm">QUEUE</p>
+                        <svg class="drop-arrow margin-08rm" xmlns="http://www.w3.org/2000/svg" width="28" height="13"
+                            viewBox="0 0 28 13" fill="none">
+                            <path
+                                d="M13.8837 8.62871L14.1867 8.85951L14.4896 8.62871L23.897 1.46263C24.6637 0.878668 25.9431 0.878668 26.7098 1.46263C27.0767 1.74216 27.2219 2.07373 27.2219 2.36697C27.2219 2.66021 27.0767 2.99178 26.7098 3.27131L15.5809 11.7487C14.8143 12.3327 13.5348 12.3327 12.7682 11.7487L1.63931 3.27131C1.27235 2.99178 1.12714 2.66021 1.12714 2.36697C1.12714 2.07439 1.2717 1.74366 1.63683 1.46452C2.00974 1.18875 2.52433 1.03356 3.05964 1.03158C3.59609 1.0296 4.10722 1.18151 4.47626 1.46263L13.8837 8.62871Z"
+                                fill="#171717" stroke="black" />
+                        </svg>
+                    </div>
+                    <div class="dropdown__sub radius-5 flex-column">
+                        <a href="" class="description-dark width-auto margin-08rm">| QUEUE (Array List)</a>
+                        <a href="" class="description-dark width-auto margin-08rm">| QUEUE (Linked List)</a>
+                    </div>
+                </div>
+
+                <!-- BINARY tree  -->
+                <div>
+                    <div class="dropdown__menu  radius-5 flex-row justify-between verticle-center">
+                        <p class="heading__sub margin-08rm">BINARY TREE</p>
+                        <svg class="drop-arrow margin-08rm" xmlns="http://www.w3.org/2000/svg" width="28" height="13"
+                            viewBox="0 0 28 13" fill="none">
+                            <path
+                                d="M13.8837 8.62871L14.1867 8.85951L14.4896 8.62871L23.897 1.46263C24.6637 0.878668 25.9431 0.878668 26.7098 1.46263C27.0767 1.74216 27.2219 2.07373 27.2219 2.36697C27.2219 2.66021 27.0767 2.99178 26.7098 3.27131L15.5809 11.7487C14.8143 12.3327 13.5348 12.3327 12.7682 11.7487L1.63931 3.27131C1.27235 2.99178 1.12714 2.66021 1.12714 2.36697C1.12714 2.07439 1.2717 1.74366 1.63683 1.46452C2.00974 1.18875 2.52433 1.03356 3.05964 1.03158C3.59609 1.0296 4.10722 1.18151 4.47626 1.46263L13.8837 8.62871Z"
+                                fill="#171717" stroke="black" />
+                        </svg>
+                    </div>
+                    <div class="dropdown__sub radius-5 flex-column">
+                        <a href="" class="description-dark width-auto margin-08rm">| simple Binary tree</a>
+                        <a href="" class="description-dark width-auto margin-08rm">| Binary search tree</a>
+                    </div>
+                </div>
+
+                <!-- GRAPH  -->
+                <div>
+                    <div class="dropdown__menu  radius-5 flex-row justify-between verticle-center">
+                        <p class="heading__sub margin-08rm">GRAPH</p>
+                        <svg class="drop-arrow margin-08rm" xmlns="http://www.w3.org/2000/svg" width="28" height="13"
+                            viewBox="0 0 28 13" fill="none">
+                            <path
+                                d="M13.8837 8.62871L14.1867 8.85951L14.4896 8.62871L23.897 1.46263C24.6637 0.878668 25.9431 0.878668 26.7098 1.46263C27.0767 1.74216 27.2219 2.07373 27.2219 2.36697C27.2219 2.66021 27.0767 2.99178 26.7098 3.27131L15.5809 11.7487C14.8143 12.3327 13.5348 12.3327 12.7682 11.7487L1.63931 3.27131C1.27235 2.99178 1.12714 2.66021 1.12714 2.36697C1.12714 2.07439 1.2717 1.74366 1.63683 1.46452C2.00974 1.18875 2.52433 1.03356 3.05964 1.03158C3.59609 1.0296 4.10722 1.18151 4.47626 1.46263L13.8837 8.62871Z"
+                                fill="#171717" stroke="black" />
+                        </svg>
+                    </div>
+                    <div class="dropdown__sub radius-5 flex-column">
+                        <a href="" class="description-dark width-auto margin-08rm">| Depth first search (dfs)</a>
+                        <a href="" class="description-dark width-auto margin-08rm">| Breadth first search (bfs)</a>
+                    </div>
+                </div>
+
+                <!-- SORTING  -->
+                <div>
+                    <div class="dropdown__menu  radius-5 flex-row justify-between verticle-center">
+                        <p class="heading__sub margin-08rm">SORTING</p>
+                        <svg class="drop-arrow margin-08rm" xmlns="http://www.w3.org/2000/svg" width="28" height="13"
+                            viewBox="0 0 28 13" fill="none">
+                            <path
+                                d="M13.8837 8.62871L14.1867 8.85951L14.4896 8.62871L23.897 1.46263C24.6637 0.878668 25.9431 0.878668 26.7098 1.46263C27.0767 1.74216 27.2219 2.07373 27.2219 2.36697C27.2219 2.66021 27.0767 2.99178 26.7098 3.27131L15.5809 11.7487C14.8143 12.3327 13.5348 12.3327 12.7682 11.7487L1.63931 3.27131C1.27235 2.99178 1.12714 2.66021 1.12714 2.36697C1.12714 2.07439 1.2717 1.74366 1.63683 1.46452C2.00974 1.18875 2.52433 1.03356 3.05964 1.03158C3.59609 1.0296 4.10722 1.18151 4.47626 1.46263L13.8837 8.62871Z"
+                                fill="#171717" stroke="black" />
+                        </svg>
+                    </div>
+                    <div class="dropdown__sub radius-5 flex-column">
+                        <a href="./BubbleSort.html" class="description-dark width-auto margin-08rm">| BUbble sort</a>
+                        <a href="" class="description-dark width-auto margin-08rm">| selection sort</a>
+                        <a href="" class="description-dark width-auto margin-08rm">| insertion sort</a>
+                        <a href="" class="description-dark width-auto margin-08rm">| quick sort</a>
+                        <a href="./MergeSort.html" class="description-dark width-auto margin-08rm">| merge sort</a>
+                        <a href="" class="description-dark width-auto margin-08rm">| heap sort</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background-color: #1F3241;">
+        <div class="justify-between flex-row justify-between align-center">
+            <div class="margin-container ">
+                DSA VIZ
+            </div>
+
+            <div class="margin-container description">
+                All rights are reserved.
+            </div>
+        </div>
+
+    </footer>
+
+
+
+
+
+    <!-- <model-viewer 
+    alt="Stylized Flying Bee Bird" 
+    src="./matrix_void.glb" 
+
+    camera-controls
+    auto-rot\
+    ate
+    min-camera-orbit="0deg 75deg 6.1m"
+    max-camera-orbit="0deg 75deg 6.1m"
+    camera-target="0m 1m 0m"
+    style="width: 100vw; height: 100vh;"
+    disable-zoom
+    disable-pan
+
+    autoplay>
+  </model-viewer> -->
+
+</body>
+
+</html>

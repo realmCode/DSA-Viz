@@ -1,1 +1,31 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merge Sort Simulator</title>
+  <link rel="stylesheet" href="MergeSort.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Merge Sort</h1>
+    <div class="main-content">
+      <div class="guide-character">
+        <img src="man.png" alt="Guide" class="man-image">
+        <div class="speech-bubble" id="speech-bubble"></div>
+      </div>
+      <div class="simulation-area">
+        <div class="array-container">
+          <div class="array-boxes" id="array-boxes"></div>
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <input type="number" id="number-input" placeholder="Enter number">
+      <button id="add-number" class="add-number">Add Number</button>
+      <button id="run-algo" disabled>Run Merge Sort</button>
+    </div>
+  </div>
+  <script src="MergeSort.js"></script>
+</body>
+</html>

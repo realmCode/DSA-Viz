@@ -1,1 +1,407 @@
+/* Base Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #e7ca3c;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 1000px;
+}
+
+.main-content {
+    display: flex;
+    gap: 2rem;
+    position: relative;
+}
+
+/* Guide Character */
+.guide-character {
+    position: relative;
+    width: 160px;
+}
+
+.man-image {
+    width: 210px;
+    height: auto;
+    position: absolute;
+    left: 15px;
+    top: -45px;
+}
+
+.speech-bubble {
+    position: absolute;
+    left: -7px;
+    top: 250px;
+    background: rgba(255,255,255,0.95);
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 237px;
+    box-shadow: 0 4px 15px #eb0606f3;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    z-index: 100;
+    opacity: 0.7;
+    text-align: center;
+}
+
+h1 {
+    display: block;
+    font-size: 3em;
+    text-align: center;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    font-weight: bold;
+    position: relative;
+    top: -25px;
+}
+
+/* Array Visualization */
+.simulation-area {
+    flex-grow: 1;
+    position: relative;
+}
+
+.array-container {
+    position: relative;
+    min-height: 400px;
+    padding: 1rem;
+    background: #e7ca3c(255,255,255,0.9);
+    border-radius: 0.8rem;
+}
+
+.array-boxes {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    transform: translateY(-3px);
+}
+
+.array-box {
+    width: 60px;
+    height: 60px;
+    background: maroon;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Tree Visualization */
+.split-container {
+    position: absolute;
+    display: flex;
+    gap: 1rem;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.split-box {
+    background: rgba(255,255,255,0.3);
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    border: 2px dashed #6b5d00;
+    color: #6b5d00;
+    font-weight: bold;
+    backdrop-filter: blur(4px);
+}
+
+.split-connector {
+    position: absolute;
+    width: 2px;
+    background: #6b5d00;
+}
+
+/* Merge Visualization Styles */
+.merge-container {
+    position: absolute;
+    display: flex;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.637);
+    padding: 0.8rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    z-index: 2;
+    transform: translateX(18px);
+}
+
+.temp-array {
+    background: rgba(255, 255, 255, 0.5) !important;
+    backdrop-filter: blur(5px); 
+    border: 2px solid rgba(198,40,40,0.2);
+    top: -60px !important;
+    backdrop-filter: blur(5px);
+    opacity: 0.82; 
+    z-index: 3;
+    transition: all 0.3s ease;
+}
+
+.merge-box {
+    width: 58px;
+    height: 58px;
+    background: rgba(198,40,40,0.1);
+    color: #c62828;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    border: 2px solid #c62828;
+    transition: all 0.3s ease;
+}
+
+.temp-box {
+    background: #f0f4c3 !important;
+    border-color: #827717 !important;
+    color: #827717 !important;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+input[type="number"] {
+    padding: 0.8rem;
+    border: 2px solid #ccc;
+    border-radius: 0.6rem;
+    font-size: 1.1rem;
+    text-align: center;
+    width: 203px;
+    transform: translateX(138px);
+    outline: none; /* Removes the black border */
+}
+
+/* Removes Number Input Spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Old Firefox */
+    appearance: textfield; /* Standard */
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 0.6rem;
+    background: #6b5d00;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#add-number.add-number {
+    transform: translateX(130px);
+    width: 25%;
+}
+
+/* Run Merge Sort Button */
+#run-algo {
+    transform: translateX(122px);
+    width: 27%;
+}
+
+button:hover {
+    background: #8c7a00;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    background: #9e9e9e;
+    cursor: not-allowed;
+}
+
+/* Animations */
+.pop-in {
+    animation: smoothPop 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes smoothPop {
+    0% { transform: translateY(20px) scale(0.9); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.flip {
+    animation: flip 0.6s ease;
+}
+
+@keyframes flip {
+    0% { transform: rotateX(0deg); }
+    50% { transform: rotateX(180deg); }
+    100% { transform: rotateX(360deg); }
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    
+    .container {
+        width: 130% !important;
+        padding: 15px;
+        border-radius: 0rem;
+
+    }
+
+    .main-content {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .array-container {
+        min-height: 300px;
+        padding: 0.5rem;
+        overflow-x: visible;
+    }
+
+    .array-boxes {
+        flex-wrap: nowrap;
+        gap: 0.3rem;
+        padding: 0 0.3rem;
+        justify-content: flex-start;
+        min-width: max-content;
+    }
+
+    .array-box {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        border-radius: 5px;
+        flex-shrink: 0;
+    }
+
+    /* Merge/Split containers */
+    .merge-container,
+    .split-container {
+        gap: 0.3rem;
+        min-width: max-content;
+        padding: 0.5rem;
+        transform: scale(0.9);
+        left: 50%;
+        transform: translateY(-130px);
+       }
+
+    .merge-box,
+    .split-box {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+        padding: 0.3rem;
+    }
+
+    .temp-array {
+        top: -30px !important;
+        transform: scale(0.85);
+    }
+
+    /* Guide Character */
+    .guide-character {
+        width: 100%;
+        margin-bottom: -2.8rem;
+    }
+
+    .man-image {
+        width: 80px;
+        position: relative;
+        left: -10px;
+        top: auto;
+        margin: 0 auto;
+        transform: translateY(15px);
+    }
+
+    .speech-bubble {
+        position: relative;
+        left: 35px;
+        top: auto;
+        transform: translateY(-110px);
+        width: 80%;
+        max-width: none;
+        margin: 0.3rem auto;
+        font-size: 0.8rem;
+        padding: 0.6rem;
+    }
+
+    /* Controls Container */
+    .controls {
+        flex-direction: column; /* Stack elements vertically */
+        gap: 0.5rem; /* Add spacing between elements */
+        margin-top: 1rem;
+    }
+
+    /* Input Field */
+    input[type="number"] {
+        width: 100%; /* Full width */
+        padding: 0.6rem; /* Slightly smaller padding */
+        font-size: 1rem;
+        border: 2px solid #ccc;
+        border-radius: 0.5rem;
+        text-align: center;
+    }
+
+    /* Buttons */
+    button {
+        width: 100%; /* Full width */
+        padding: 0.6rem; /* Slightly smaller padding */
+        font-size: 1rem;
+        border: none;
+        border-radius: 0.5rem;
+        background: #6b5d00; /* Dark yellow color */
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background: #8c7a00; /* Slightly lighter yellow on hover */
+    }
+
+    button:disabled {
+        background: #9e9e9e; /* Gray when disabled */
+        cursor: not-allowed;
+    }
+
+    /* Add Number Button */
+    #add-number.add-number {
+        background: #6b5d00; /* Same color as other buttons */
+    }
+
+    /* Run Merge Sort Button */
+    #run-algo {
+        background: #6b5d00; /* Same color as other buttons */
+    }
+
+    /* Positioning fixes */
+    .split-container,
+    .merge-container {
+        position: relative;
+        margin: 0.5rem 0;
+        overflow: visible;
+    }
+}

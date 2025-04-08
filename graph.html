@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Binary Tree Visualizer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    .tree-container {
+      margin-top: 2rem;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .node {
+      background: #71a0f1;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50%;
+      position: absolute;
+      transition: all 0.4s ease;
+    }
+    .line {
+      position: absolute;
+      height: 2px;
+      background: #aaa;
+      transform-origin: left;
+    }
+    .highlight {
+      background: orange !important;
+    }
+    .controls input, .controls button {
+      margin: 0.5rem;
+      padding: 0.5rem;
+    }
+    .pseudocode {
+      background: #f4f4f4;
+      padding: 1rem;
+      margin-top: 2rem;
+      width: 400px;
+      margin-inline: auto;
+      border-radius: 8px;
+      text-align: left;
+    }
+    .code-line {
+      padding: 0.2rem;
+      border-left: 4px solid transparent;
+    }
+    .active-line {
+      background: #e0eaff;
+      border-left-color: #71a0f1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Binary Tree Visualizer</h1>
+
+  <div class="controls">
+    <input type="number" id="value" placeholder="Enter value">
+    <button onclick="insertNode()">Insert</button>
+    <button onclick="deleteNode()">Delete</button>
+    <button onclick="searchNode()">Search</button>
+  </div>
+
+  <div class="tree-container" id="tree"></div>
+
+  <div class="pseudocode" id="pseudocode">
+    <div class="code-line">1. Insert: Traverse left/right recursively until null</div>
+    <div class="code-line">2. Create node at correct spot</div>
+    <div class="code-line">3. Delete: Find node to delete</div>
+    <div class="code-line">4. Handle 0/1/2 children cases</div>
+    <div class="code-line">5. Search: Traverse recursively and highlight node</div>
+  </div>
+
+  <script>
+    let root = null;
+
+    class TreeNode {
+      constructor(value, x = 0, y = 0) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+        this.x = x;
+        this.y = y;
+      }
+    }
+
+    async function highlightLine(line) {
+      document.querySelectorAll(".code-line").forEach(el => el.classList.remove("active-line"));
+      const target = document.querySelectorAll(".code-line")[line - 1];
+      target.classList.add("active-line");
+      await new Promise(r => setTimeout(r, 600));
+    }
+
+    async function insertNode() {
+      const val = parseInt(document.getElementById("value").value);
+      if (isNaN(val)) return;
+      root = await insert(root, val);
+      renderTree();
+      document.getElementById("value").value = "";
+    }
+
+    async function insert(node, val, x = 600, y = 50, spacing = 200) {
+      if (!node) {
+        await highlightLine(1);
+        await highlightLine(2);
+        return new TreeNode(val, x, y);
+      }
+      if (val < node.value) {
+        node.left = await insert(node.left, val, x - spacing, y + 80, spacing / 1.5);
+      } else if (val > node.value) {
+        node.right = await insert(node.right, val, x + spacing, y + 80, spacing / 1.5);
+      }
+      return node;
+    }
+
+    function renderTree() {
+      const treeContainer = document.getElementById("tree");
+      treeContainer.innerHTML = "";
+      if (root) drawNode(treeContainer, root);
+    }
+
+    function drawNode(container, node) {
+      const div = document.createElement("div");
+      div.className = "node";
+      div.style.left = `${node.x}px`;
+      div.style.top = `${node.y}px`;
+      div.innerText = node.value;
+      container.appendChild(div);
+
+      if (node.left) {
+        drawLine(container, node.x, node.y, node.left.x, node.left.y);
+        drawNode(container, node.left);
+      }
+      if (node.right) {
+        drawLine(container, node.x, node.y, node.right.x, node.right.y);
+        drawNode(container, node.right);
+      }
+    }
+
+    function drawLine(container, x1, y1, x2, y2) {
+      const length = Math.hypot(x2 - x1, y2 - y1);
+      const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+      const line = document.createElement("div");
+      line.className = "line";
+      line.style.width = `${length}px`;
+      line.style.left = `${x1 + 25}px`;
+      line.style.top = `${y1 + 25}px`;
+      line.style.transform = `rotate(${angle}deg)`;
+      container.appendChild(line);
+    }
+
+    async function searchNode() {
+      const val = parseInt(document.getElementById("value").value);
+      if (isNaN(val)) return;
+      await highlightLine(5);
+      await search(root, val);
+    }
+
+    async function search(node, val) {
+      if (!node) return;
+      const nodes = document.querySelectorAll(".node");
+      for (let div of nodes) div.classList.remove("highlight");
+      const current = [...nodes].find(n => parseInt(n.innerText) === node.value);
+      if (current) current.classList.add("highlight");
+      await new Promise(r => setTimeout(r, 600));
+
+      if (val === node.value) return;
+      else if (val < node.value) await search(node.left, val);
+      else await search(node.right, val);
+    }
+
+    async function deleteNode() {
+      const val = parseInt(document.getElementById("value").value);
+      if (isNaN(val)) return;
+      await highlightLine(3);
+      root = await deleteHelper(root, val);
+      renderTree();
+      document.getElementById("value").value = "";
+    }
+
+    async function deleteHelper(node, val) {
+      if (!node) return null;
+      if (val < node.value) {
+        node.left = await deleteHelper(node.left, val);
+      } else if (val > node.value) {
+        node.right = await deleteHelper(node.right, val);
+      } else {
+        await highlightLine(4);
+        if (!node.left) return node.right;
+        if (!node.right) return node.left;
+        let successor = node.right;
+        while (successor.left) successor = successor.left;
+        node.value = successor.value;
+        node.right = await deleteHelper(node.right, successor.value);
+      }
+      return node;
+    }
+  </script>
+</body>
+</html>

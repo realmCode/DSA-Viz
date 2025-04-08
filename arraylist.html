@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array List Visualizer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    #array {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 2rem 0;
+    }
+
+    .box {
+      width: 50px;
+      height: 50px;
+      background: #71a0f1;
+      color: white;
+      font-weight: bold;
+      line-height: 50px;
+      border-radius: 6px;
+      transition: transform 0.2s ease;
+    }
+
+    .highlight {
+      background: orange !important;
+      transform: scale(1.2);
+    }
+
+    .pseudocode {
+      background: #f4f4f4;
+      padding: 1rem;
+      margin-top: 2rem;
+      text-align: left;
+      width: 400px;
+      margin-inline: auto;
+      border-radius: 8px;
+    }
+
+    .code-line {
+      padding: 0.2rem;
+      border-left: 4px solid transparent;
+    }
+
+    .active-line {
+      background: #e0eaff;
+      border-left-color: #71a0f1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Array List Visualizer</h1>
+
+  <div>
+    <input type="number" id="value" placeholder="Enter value" />
+    <input type="number" id="index" placeholder="Enter index (optional)" />
+    <button onclick="startInsert()">Insert</button>
+    <button onclick="startInsertAtIndex()">Insert at Index</button>
+    <button onclick="startDelete()">Delete</button>
+  </div>
+
+  <div id="array"></div>
+
+  <div class="pseudocode" id="pseudocode">
+    <div class="code-line">1. if array is full:</div>
+    <div class="code-line">2. &nbsp;&nbsp;&nbsp;&nbsp;create new array with double capacity</div>
+    <div class="code-line">3. &nbsp;&nbsp;&nbsp;&nbsp;copy elements</div>
+    <div class="code-line">4. insert element at next index</div>
+    <div class="code-line">5. insert element at given index: shift elements</div>
+    <div class="code-line">6. delete element: shift elements left</div>
+  </div>
+
+  <script>
+    let array = [];
+    let capacity = 4;
+    let size = 0;
+
+    function renderArray(highlightIndex = -1) {
+      const container = document.getElementById("array");
+      container.innerHTML = "";
+      for (let i = 0; i < capacity; i++) {
+        const box = document.createElement("div");
+        box.className = "box";
+        box.innerText = array[i] !== undefined ? array[i] : "";
+        if (i === highlightIndex) {
+          box.classList.add("highlight");
+        }
+        container.appendChild(box);
+      }
+    }
+
+    async function highlightLine(line) {
+      document.querySelectorAll(".code-line").forEach(line => line.classList.remove("active-line"));
+      const lineElement = document.querySelectorAll(".code-line")[line - 1];
+      lineElement.classList.add("active-line");
+      await new Promise(r => setTimeout(r, 600));
+    }
+
+    async function resizeIfNeeded() {
+      if (size === capacity) {
+        await highlightLine(1);
+        await highlightLine(2);
+        let newArray = new Array(capacity * 2);
+        await highlightLine(3);
+        for (let i = 0; i < size; i++) {
+          newArray[i] = array[i];
+          renderArray(i);
+          await new Promise(r => setTimeout(r, 200));
+        }
+        array = newArray;
+        capacity *= 2;
+      }
+    }
+
+    async function startInsert() {
+      const value = parseInt(document.getElementById("value").value);
+      if (isNaN(value)) return;
+      await resizeIfNeeded();
+      await highlightLine(4);
+      array[size] = value;
+      size++;
+      renderArray(size - 1);
+      document.getElementById("value").value = "";
+    }
+
+    async function startInsertAtIndex() {
+      const value = parseInt(document.getElementById("value").value);
+      const index = parseInt(document.getElementById("index").value);
+      if (isNaN(value) || isNaN(index) || index < 0 || index > size) return;
+      await resizeIfNeeded();
+      await highlightLine(5);
+      for (let i = size; i > index; i--) {
+        array[i] = array[i - 1];
+        renderArray(i);
+        await new Promise(r => setTimeout(r, 200));
+      }
+      array[index] = value;
+      size++;
+      renderArray(index);
+      document.getElementById("value").value = "";
+      document.getElementById("index").value = "";
+    }
+
+    async function startDelete() {
+      const index = parseInt(document.getElementById("index").value);
+      if (isNaN(index) || index < 0 || index >= size) return;
+      await highlightLine(6);
+      for (let i = index; i < size - 1; i++) {
+        array[i] = array[i + 1];
+        renderArray(i);
+        await new Promise(r => setTimeout(r, 200));
+      }
+      array[size - 1] = undefined;
+      size--;
+      renderArray(index);
+      document.getElementById("index").value = "";
+    }
+
+    renderArray();
+  </script>
+
+</body>
+</html>
